@@ -51,6 +51,7 @@ module EasyCRUD
             param  = "#{object.singular_name}_id".to_sym
             if params[param]
               find_crud_polymorphic_object(object, params[param])
+              break
             else
               next
             end
