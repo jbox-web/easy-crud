@@ -4,6 +4,8 @@
 
 ## Installation
 
+Add the following line to your Gemfile :
+
 ```ruby
 gem 'easy-crud', '~> 1.0.0', git: 'https://github.com/jbox-web/easy-crud.git', tag: '1.0.0'
 ```
