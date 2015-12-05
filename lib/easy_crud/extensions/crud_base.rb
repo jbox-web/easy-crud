@@ -37,7 +37,7 @@ module EasyCRUD
 
 
         def locals_for_new
-          if _crud_model.scoped?
+          if _crud_model.scoped? || _crud_model.polymorphic?
             { _crud_model_key => _crud_new_scoped_object, _crud_scoped_key => _crud_scoped_object }
           else
             { _crud_model_key => _crud_new_object }
@@ -46,7 +46,7 @@ module EasyCRUD
 
 
         def locals_for_edit
-          if _crud_model.scoped?
+          if _crud_model.scoped? || _crud_model.polymorphic?
             { _crud_model_key => _crud_object, _crud_scoped_key => _crud_scoped_object }
           else
             { _crud_model_key => _crud_object }
@@ -55,7 +55,11 @@ module EasyCRUD
 
 
         def default_redirect_url
-          _crud_model.scoped? ? crud_show_path_for_scoped_object : crud_index_path_for_object
+          if _crud_model.scoped? || _crud_model.polymorphic?
+            crud_show_path_for_scoped_object
+          else
+            crud_index_path_for_object
+          end
         end
 
     end

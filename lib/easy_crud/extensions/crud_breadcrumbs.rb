@@ -51,7 +51,7 @@ module EasyCRUD
 
 
         def global_crumb_title_without_icon
-          _crud_model.scoped? ? _crud_scoped_object_klass.model_name.human(count: 2) : _crud_object_klass.model_name.human(count: 2)
+          _crud_model.scoped? ? _crud_model.scoped_to.klass.model_name.human(count: 2) : _crud_model.klass.model_name.human(count: 2)
         end
 
 

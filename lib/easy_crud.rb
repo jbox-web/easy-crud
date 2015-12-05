@@ -6,10 +6,12 @@ module EasyCRUD
 
   def default_options
     {
-      namespace:     nil,
-      parent:        nil,
-      crumbable:     false,
-      crumbs_opts:   {},
+      namespace:        nil,
+      parent:           nil,
+      polymorphic:      [],
+      polymorphic_name: nil,
+      crumbable:        false,
+      crumbs_opts:      {},
       params: {
         on_create: [],
         on_update: []

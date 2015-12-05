@@ -17,12 +17,12 @@ module EasyCRUD
 
 
         def page_title_for_index
-          [_crud_object_klass.model_name.human(count: 2)]
+          [_crud_model.klass.model_name.human(count: 2)]
         end
 
 
         def page_title_for_show
-          [_crud_object_klass.model_name.human(count: 1), _crud_object.to_s]
+          [_crud_model.klass.model_name.human(count: 1), _crud_object.to_s]
         end
 
 

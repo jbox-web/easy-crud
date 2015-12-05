@@ -5,6 +5,7 @@ module EasyCRUD
       attr_reader :name
       attr_reader :options
       attr_reader :parent
+      attr_reader :polymorphic
       attr_reader :crumbs_opts
 
 
@@ -12,6 +13,7 @@ module EasyCRUD
         @name        = name
         @options     = EasyCRUD.default_options.deep_merge(opts)
         @parent      = @options.delete(:parent) { nil }
+        @polymorphic = @options.delete(:polymorphic) { [] }
         @crumbable   = @options[:crumbable]
         @crumbs_opts = @options[:crumbs_opts]
       end
@@ -27,9 +29,33 @@ module EasyCRUD
       end
 
 
+      def polymorphic_name
+        @options[:polymorphic_name]
+      end
+
+
+      def polymorphic?
+        !polymorphic.empty?
+      end
+
+
+      def polymorphic_associations
+        @polymorphic_associations ||= []
+        polymorphic.each do |model|
+          @polymorphic_associations << EasyCRUD::Builder::Model.new(model, options)
+        end
+        @polymorphic_associations
+      end
+
+
       def scoped_to
         return nil if parent.nil?
         @scoped_to ||= EasyCRUD::Builder::Model.new(parent, options)
+      end
+
+
+      def klass
+        @klass ||= class_name.constantize
       end
 
 
@@ -39,7 +65,7 @@ module EasyCRUD
 
 
       def this_class
-        class_name.constantize.base_class
+        klass.base_class
       end
 
 
