@@ -1,5 +1,7 @@
 ## EasyCRUD
 
+### A Ruby gem to create CRUD Applications, easy ;)
+
 ## Installation
 
 ```ruby
