@@ -1,5 +1,5 @@
 require 'easy_crud/builder/model'
-require 'easy_crud/base'
+require 'easy_crud/controller'
 
 module EasyCRUD
   extend self

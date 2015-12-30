@@ -6,7 +6,7 @@ require 'easy_crud/extensions/crud_finder'
 require 'easy_crud/extensions/page_title'
 
 module EasyCRUD
-  module Base
+  module Controller
     extend ActiveSupport::Concern
     included do
       include EasyCRUD::Extensions::CrudModel
