@@ -6,7 +6,6 @@ module EasyCRUD
       attr_reader :options
       attr_reader :parent
       attr_reader :polymorphic
-      attr_reader :crumbs_opts
 
 
       def initialize(name, opts = {})
@@ -15,7 +14,6 @@ module EasyCRUD
         @parent      = @options.delete(:parent) { nil }
         @polymorphic = @options.delete(:polymorphic) { [] }
         @crumbable   = @options[:crumbable]
-        @crumbs_opts = @options[:crumbs_opts]
       end
 
 

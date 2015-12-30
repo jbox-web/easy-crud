@@ -46,7 +46,7 @@ module EasyCRUD
 
 
         def global_crumb_icon
-          _crud_model.crumbs_opts[:icon]
+          _crud_model.klass.model_icon_name
         end
 
 

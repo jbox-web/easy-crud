@@ -1,5 +1,6 @@
 require 'easy_crud/builder/model'
 require 'easy_crud/controller'
+require 'easy_crud/model'
 
 module EasyCRUD
   extend self
@@ -10,8 +11,7 @@ module EasyCRUD
       parent:           nil,
       polymorphic:      [],
       polymorphic_name: nil,
-      crumbable:        false,
-      crumbs_opts:      {},
+      crumbable:        true,
       params: {
         on_create: [],
         on_update: []
