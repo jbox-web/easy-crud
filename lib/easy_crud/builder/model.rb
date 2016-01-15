@@ -63,7 +63,7 @@ module EasyCRUD
 
 
       def this_class
-        klass.base_class
+        klass.name.constantize
       end
 
 
