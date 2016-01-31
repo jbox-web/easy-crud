@@ -58,6 +58,42 @@ module EasyCRUD
           if _crud_model.scoped? || _crud_model.polymorphic?
             crud_show_path_for_scoped_object
           else
+            crud_show_path_for_object
+          end
+        end
+
+
+        def redirect_url_on_success_create(opts = {})
+          if _crud_model.scoped? || _crud_model.polymorphic?
+            crud_show_path_for_scoped_object
+          else
+            send(path_for_crud_object(_crud_model.singular_name), opts[_crud_model_key])
+          end
+        end
+
+
+        def redirect_url_on_failure_create(opts = {})
+          if _crud_model.scoped? || _crud_model.polymorphic?
+            crud_show_path_for_scoped_object
+          else
+            crud_index_path_for_object
+          end
+        end
+
+
+        def redirect_url_on_success_destroy(opts = {})
+          if _crud_model.scoped? || _crud_model.polymorphic?
+            crud_show_path_for_scoped_object
+          else
+            crud_index_path_for_object
+          end
+        end
+
+
+        def redirect_url_on_failure_destroy(opts = {})
+          if _crud_model.scoped? || _crud_model.polymorphic?
+            crud_show_path_for_scoped_object
+          else
             crud_index_path_for_object
           end
         end
