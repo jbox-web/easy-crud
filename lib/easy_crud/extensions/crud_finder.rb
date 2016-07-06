@@ -7,7 +7,7 @@ module EasyCRUD
         before_action :find_crud_collection, only: :index
         before_action :find_crud_objects
         before_action :set_page_title
-        before_action :add_breadcrumbs
+        before_action :set_breadcrumb
       end
 
 

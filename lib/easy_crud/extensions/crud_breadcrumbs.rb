@@ -6,24 +6,24 @@ module EasyCRUD
       private
 
         def add_breadcrumbs_for(action)
-          add_breadcrumbs(action: action.to_s)
+          set_breadcrumb(action: action.to_s)
         end
 
 
-        def add_breadcrumbs(action: action_name)
+        def set_breadcrumb(action: action_name)
           return if !crumbable?
 
           global_crumb
-          add_crumb crumb_title_for_scoped_object, crumb_path_for_scoped_object if _crud_model.scoped?
+          add_breadcrumb crumb_title_for_scoped_object, crumb_path_for_scoped_object if _crud_model.scoped?
 
           case action
           when 'show'
-            add_crumb crumb_title_for_object, '#'
+            add_breadcrumb crumb_title_for_object, '#'
           when 'new', 'create'
-            add_crumb t('.title'), '#'
+            add_breadcrumb t('.title'), '#'
           when 'edit', 'update'
-            add_crumb crumb_title_for_object, crumb_path_for_object
-            add_crumb t('text.edit'), '#'
+            add_breadcrumb crumb_title_for_object, crumb_path_for_object
+            add_breadcrumb t('text.edit'), '#'
           else
             ''
           end
@@ -31,7 +31,7 @@ module EasyCRUD
 
 
         def global_crumb
-          add_crumb global_crumb_title, global_crumb_path
+          add_breadcrumb global_crumb_title, global_crumb_path
         end
 
 
