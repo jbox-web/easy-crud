@@ -29,7 +29,11 @@ module EasyCRUD
             elsif _crud_model.polymorphic?
               @polymorphic_object.send(_crud_model.plural_name).find(find_params)
             else
-              _crud_model.klass.find(find_params)
+              if finder_includes.empty?
+                _crud_model.klass.find(find_params)
+              else
+                _crud_model.klass.includes(finder_includes).find(find_params)
+              end
             end
           instance_variable_set("@#{_crud_model.singular_name}", object)
         rescue ActiveRecord::RecordNotFound => e
@@ -76,6 +80,11 @@ module EasyCRUD
 
         def find_crud_collection
           instance_variable_set("@#{_crud_model.plural_name}", _crud_model.klass.all)
+        end
+
+
+        def finder_includes
+          []
         end
 
     end
